@@ -1,13 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"time"
 	"runtime"
+	"time"
 )
 
 var serviceToken string
@@ -72,10 +73,11 @@ func main() {
 	}()
 
 	http.HandleFunc("/", handleIndex)
-	listenAddr := os.Getenv("LISTEN_ADDR")
-	if len(listenAddr) == 0 {
-		panic("LISTEN_ADDR expected")
+	listenAddrPortString := os.Getenv("LISTEN_ADDR_PORT")
+	if len(listenAddrPortString) == 0 {
+		panic("LISTEN_ADDR_PORT expected")
 	}
+	var listenAddr = fmt.Sprintf(":%s", listenAddrPortString)
 	http.ListenAndServe(listenAddr, nil)
 
 	// Ideally, we would have a shutdown function to orchestrate the shutdown

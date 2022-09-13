@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -89,10 +90,11 @@ func main() {
 	log.Printf("arena-config-generator version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
 	setup()
 
-	listenAddr := os.Getenv("LISTEN_ADDR")
-	if len(listenAddr) == 0 {
-		panic("LISTEN_ADDR expected")
+	listenAddrPortString := os.Getenv("LISTEN_ADDR_PORT")
+	if len(listenAddrPortString) == 0 {
+		panic("LISTEN_ADDR_PORT expected")
 	}
+	var listenAddr = fmt.Sprintf(":%s", listenAddrPortString)
 
 	http.HandleFunc("/", handleIndex)
 	http.ListenAndServe(listenAddr, nil)
