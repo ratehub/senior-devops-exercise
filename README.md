@@ -13,7 +13,7 @@ The `Optional` tasks can be skipped if it is taking too long to figure out.
 4. [Optional] Use Helm best practices and be sure to consider security here too.
 5. The build: use a combination of docs, and/or scripts, and/or CI system integration to automate the Docker builds and possibly even installing the Helm Apps into a Kubernetes cluster.
 6. [Optional] How would you expose the `api` Service outside of the Kubernetes cluster.  (This may require further changes or additions to the associated Helm chart.)
-7. [**Bonus**/Optional] Add terraform, or use some other configuration tool to setup a test Kubernetes cluster.  This can be a managed cluster in a common cloud provider (we use GCP and DigitalOcean).
+7. [**Bonus**/Optional] Add terraform, or use some other configuration tool to setup a test Kubernetes cluster.  This can be a managed cluster in a common cloud provider (we use GCP and DigitalOcean), or it could be setting up a local kubernetes instance (e.g. using minikube, KinD, k3d, etc.)
 
 ## Expected Results
 
