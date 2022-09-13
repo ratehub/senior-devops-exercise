@@ -7,9 +7,16 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"runtime"
 )
 
 var serviceToken string
+
+var (
+	version string = "dev"
+	commit  string = ""
+	date    string = ""
+)
 
 func readToken() {
 	b, err := ioutil.ReadFile("/var/run/secrets/tokens/api-token")
@@ -46,6 +53,8 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	log.Printf("arena-config-generator version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
+
 	// Read the token once at startup first
 	readToken()
 	// Reload the service account token every 5 minutes

@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"runtime"
 
 	authv1 "k8s.io/api/authentication/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -15,6 +16,12 @@ import (
 )
 
 var kClientset *kubernetes.Clientset
+
+var (
+	version string = "dev"
+	commit  string = ""
+	date    string = ""
+)
 
 // https://stackoverflow.com/a/51270134
 func prettyPrint(i interface{}) string {
@@ -79,6 +86,7 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	log.Printf("arena-config-generator version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
 	setup()
 
 	listenAddr := os.Getenv("LISTEN_ADDR")

@@ -20,8 +20,8 @@ The `Optional` tasks can be skipped if it is taking too long to figure out.
  - The Docker image builds should be easily reproducible. The Dockerfiles and resulting Docker images will be inspected to ensure they are working as expected.
  - The helm charts should be easily configured and used once the Docker images have been built and pushed.  Note that due to configuration requirements the `data-store` Service should be deployed first.
  - Installing the Services with the Helm charts should work *even if* the 2 services are installed to different Namespaces in the same cluster.
- - Use Git.  We use Github, but your fork of the repo should be sharable with us.
- - Feel free to make notes about issues that were encountered.
+ - Use Git.  We use GitHub, but your fork of the repo can be hosted elsewhere though it should be sharable with us.
+ - Feel free to make notes about issues that were encountered/resolved.
 
 ## Configurations
  
@@ -33,7 +33,7 @@ The `Optional` tasks can be skipped if it is taking too long to figure out.
  
 #### Environment Variables
 
-- `LISTEN_ADDR` -- The port this Service is exposed on in Kubernetes.
+- `LISTEN_ADDR` -- The port this Service is exposed on in Kubernetes.  This should be a string of the form `:<number>`.
 - `DATA_STORE_CONNECTION` -- The connection string use by `api` to connect to the the `data-store`.
  
 #### Other Settings
@@ -46,7 +46,7 @@ The `Optional` tasks can be skipped if it is taking too long to figure out.
 
 #### Environment Variables
 
-- `LISTEN_ADDR` -- The port this Service is exposed on in Kubernetes.
+- `LISTEN_ADDR` -- The port this Service is exposed on in Kubernetes.  This should be a string of the form `:<number>`.
 - `AUDIENCE_NAME` -- The expected `audience` field on the incoming auth token (passed from `api`).
 
 ---
@@ -54,6 +54,8 @@ The `Optional` tasks can be skipped if it is taking too long to figure out.
  > Note (Hint #1): The `api` Service must use a projected volume to set both the number of seconds before the token expires as well as set an audience on the token.  Also note (*important*) the `audience` setting must match between both services.
  
  > Note (Hint #2): The `data-store` Service needs to be able to validate ("authenticate") any tokens passed to it using the Kubernetes API.
+
+ > Note (Hint #3): Each of the Services implements global variables for `version` (app version), `commit` (commit hash being built), and `date` (built timestamp) which are displayed on start-up.  These should be set at build time (this requires knowledge of `go build` options).
 
 ---
 
