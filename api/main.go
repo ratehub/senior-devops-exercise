@@ -54,7 +54,7 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Printf("arena-config-generator version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
+	log.Printf("SA Auth api version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
 
 	// Read the token once at startup first
 	readToken()

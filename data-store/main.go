@@ -87,7 +87,7 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Printf("arena-config-generator version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
+	log.Printf("SA Auth data-store version: %s; commit: %s; build date: %s; go build: %s", version, commit, date, runtime.Version())
 	setup()
 
 	listenAddrPortString := os.Getenv("LISTEN_ADDR_PORT")
