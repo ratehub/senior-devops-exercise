@@ -9,7 +9,7 @@ The `Optional` tasks can be skipped if it is taking too long to figure out.
 
 1. These services will be deployed separately so you must create a Dockerfile for each.
 2. [Optional] Think of optimizing both the size a security of the resulting container images; i.e. use best practices.
-3. Create Helm charts for each of the services.  Required configurations for each service are detailed below (this may also affect how you configure your Dockerfile).
+3. Fix the Helm charts for each of the services.  Required configurations for each service are detailed below (this may also affect how you configure your Dockerfile).  Basic Helm charts have already been created with `helm create` but will need to have some components added, deleted, and/or changed to be fully functional.
 4. [Optional] Use Helm best practices and be sure to consider security here too.
 5. The build: use a combination of docs, and/or scripts, and/or CI system integration to automate the Docker builds and possibly even installing the Helm Apps into a Kubernetes cluster.
 6. [Optional] How would you expose the `api` Service outside of the Kubernetes cluster.  (This may require further changes or additions to the associated Helm chart.)
